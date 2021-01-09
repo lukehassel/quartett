@@ -1,5 +1,6 @@
 from entities.player.bot import Bot
 from entities.player.user import User
+from ui.ui_console_impl import UIConsoleImpl
 from ui.ui_interface import UIInterface
 
 
@@ -18,5 +19,5 @@ from ui.ui_interface import UIInterface
 #             name_list.append(player_name)
 
 
-def createPlayers(ui: UIInterface):
+def createPlayers(ui: UIConsoleImpl):
     return [User("fsaf"), Bot("adf"), User("fsaf")]
