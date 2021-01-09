@@ -25,14 +25,20 @@ class Bot(PlayerInterface):
     def get_hand(self):
         return super().get_hand()
 
+    def add_card(self, card: Card):
+        super().add_card(card)
+
     def set_hand(self, cards: [Card]):
         super().set_hand(cards)
 
+    def has_card(self, card: Card):
+        return super().has_card(card)
+
+    def remove_card(self, card: Card):
+        return super().remove_card(card)
+
     def reset_hand(self):
         super().reset_hand()
-
-    def add_card(self, card: Card):
-        super().add_card(card)
 
     def has_quartet(self):
         super().has_quartet()

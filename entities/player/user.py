@@ -18,20 +18,26 @@ class User(PlayerInterface):
     def get_name(self):
         return super().get_name()
 
-    def add_card(self, card: Card):
-        super().add_card(card)
-
     def get_hand(self):
         return super().get_hand()
 
+    def add_card(self, card: Card):
+        super().add_card(card)
+
     def set_hand(self, cards: [Card]):
         super().set_hand(cards)
+
+    def has_card(self, card: Card):
+        return super().has_card(card)
+
+    def remove_card(self, card: Card):
+        return super().remove_card(card)
 
     def reset_hand(self):
         super().reset_hand()
 
     def has_quartet(self):
-        super().has_quartet()
+        return super().has_quartet()
 
     def remove_all_quartet(self):
         super().remove_all_quartet()
