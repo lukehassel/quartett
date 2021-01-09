@@ -19,5 +19,5 @@ from ui.ui_interface import UIInterface
 #             name_list.append(player_name)
 
 
-def createPlayers(ui: UIConsoleImpl):
+def create_players(ui: UIConsoleImpl):
     return [User("fsaf"), Bot("adf"), User("fsaf")]
