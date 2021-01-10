@@ -1,2 +1,4 @@
 class Card(object):
-    pass
+
+    def card_symbol(self):
+        pass

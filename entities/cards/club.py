@@ -2,4 +2,6 @@ from entities.cards.card import Card
 
 
 class Club(Card):
-    pass
+
+    def card_symbol(self):
+        return "\u2663"

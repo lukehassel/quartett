@@ -2,4 +2,6 @@ from entities.cards.card import Card
 
 
 class Diamond(Card):
-    pass
+
+    def card_symbol(self):
+        return "\u2666"
