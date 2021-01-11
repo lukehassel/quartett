@@ -1,6 +1,7 @@
 __author__ = "6966753, Khalil, 7340644, Hassel"
 __email__ = "s7114097@stud.uni-frankfurt.de, s8911049@rz.uni-frankfurt.de"
 
+from entities.cards.card import Card
 from entities.player.player_interface import PlayerInterface
 
 
@@ -50,13 +51,14 @@ class ChooseBotState(GameState):
     """
 
 
-class AskPlayerForACard(GameState):
+class AskPlayerForCardAndPlayer(GameState):
     """
         This class represents a state in which the game can be.
         ...
     """
 
-    def __init__(self, player: PlayerInterface):
+    def __init__(self, player: PlayerInterface, card: Card):
         self.player = player
+        self.card = card
 
 

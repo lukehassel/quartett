@@ -1,8 +1,15 @@
 __author__ = "6966753, Khalil, 7340644, Hassel"
 __email__ = "s7114097@stud.uni-frankfurt.de, s8911049@rz.uni-frankfurt.de"
 
+import random
+
 from entities.cards.card import Card
+from entities.cards.club import Club
+from entities.cards.diamond import Diamond
+from entities.cards.heart import Heart
+from entities.cards.spade import Spade
 from entities.player.player_interface import PlayerInterface
+from entities.states.game_states import AskPlayerForCardAndPlayer
 
 
 class Bot(PlayerInterface):
@@ -18,6 +25,29 @@ class Bot(PlayerInterface):
             For more information take a look at the PlayerInterface class.
         """
         super().__init__(name)
+
+    def add_quartet(self):
+        super().add_quartet()
+
+    def get_quartet_count(self):
+        return super().get_quartet_count()
+
+    def reset_quartet_count(self):
+        super().reset_quartet_count()
+
+    def get_random_player(self, players: [PlayerInterface], current_player: PlayerInterface):
+        copy = players.copy()
+        copy.remove(current_player)
+        randIndexPlayer = random.randint(0, len(copy)-1)
+        return copy[randIndexPlayer]
+
+    def get_random_card(self):
+        possibleCards = [Club(), Heart(), Spade(), Diamond()]
+        randIndex = random.randint(0, 3)
+        return possibleCards[randIndex]
+
+    def ask_player_for_card(self, players: [PlayerInterface], currentPlayer: PlayerInterface):
+        return AskPlayerForCardAndPlayer(self.get_random_player(players, currentPlayer), self.get_random_card())
 
     def get_name(self):
         return super().get_name()
@@ -43,5 +73,8 @@ class Bot(PlayerInterface):
     def has_quartet(self):
         super().has_quartet()
 
-    def remove_all_quartet(self):
-        super().remove_all_quartet()
+    def remove_all_quartet(self, callback):
+        super().remove_all_quartet(callback)
+
+    def has_cards(self):
+        return super().has_cards()

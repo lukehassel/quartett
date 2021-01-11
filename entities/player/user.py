@@ -39,5 +39,18 @@ class User(PlayerInterface):
     def has_quartet(self):
         return super().has_quartet()
 
-    def remove_all_quartet(self):
-        super().remove_all_quartet()
+    def remove_all_quartet(self, callback):
+        super().remove_all_quartet(callback)
+
+    def add_quartet(self):
+        super().add_quartet()
+
+    def get_quartet_count(self):
+        return super().get_quartet_count()
+
+    def reset_quartet_count(self):
+        super().reset_quartet_count()
+
+    def has_cards(self):
+        return super().has_cards()
+

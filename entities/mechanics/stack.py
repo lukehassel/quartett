@@ -15,7 +15,7 @@ class CardStack:
         for i in range(8):
             self.stack = self.stack + [possibleCards[x] for x in range(len(possibleCards))]
 
-    def getStack(self):
+    def get_stack(self):
         return self.stack
 
     def mix(self, players: [PlayerInterface]):
@@ -27,25 +27,27 @@ class CardStack:
             for i in range(10):
 
                 for player in players:
-                    cardDict[player] = cardDict[player] + [self.getRandomCard()]
+                    cardDict[player] = cardDict[player] + [self.get_random_card()]
 
         else:
-            for i in self.stack:
-
-                for player in players:
-                    cardDict[player] = cardDict[player] + [self.getRandomCard()]
+            playerIndex = 0
+            while len(self.stack) > 0:
+                cardDict[players[playerIndex]] = cardDict[players[playerIndex]] + [self.get_random_card()]
+                if playerIndex > len(players)-2:
+                    playerIndex = 0
+                else:
+                    playerIndex = playerIndex + 1
 
         for player in players:
             player.set_hand(cardDict[player])
-            print(len(player.get_hand()))
 
-    def isStackEmpty(self):
+    def is_stack_empty(self):
         if self.stack.__len__() == 0:
             return True
         else:
             return False
 
-    def getRandomCard(self):
+    def get_random_card(self):
         randIndex = random.randint(0, (self.stack.__len__() - 1))
         # print(str(randIndex) + "  " + str(self.stack.__len__()))
         randCard = self.stack[randIndex]
