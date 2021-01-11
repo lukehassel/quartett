@@ -22,6 +22,7 @@ class PlayerInterface:
         """
         self.hand = []
         self.name = name
+        self.quartetCount = 0
 
     def get_name(self):
         """
@@ -30,6 +31,21 @@ class PlayerInterface:
                 Name of the player.
         """
         return self.name
+
+    def add_quartet(self):
+        self.quartetCount = self.quartetCount + 1
+
+    def get_quartet_count(self):
+        return self.quartetCount
+
+    def reset_quartet_count(self):
+        self.quartetCount = 0
+
+    def has_cards(self):
+        if len(self.hand) > 0:
+            return True
+        else:
+            return False
 
     def get_hand(self):
         """
@@ -78,7 +94,7 @@ class PlayerInterface:
         heartCount = 0
         spadeCount = 0
 
-        print("hand:" + str(self.get_hand()))
+        #print("hand:" + str(self.get_hand()))
 
         for c in self.get_hand():
             if isinstance(c, type(Diamond())):
@@ -100,7 +116,7 @@ class PlayerInterface:
         else:
             return False
 
-    def remove_all_quartet(self):
+    def remove_all_quartet(self, callback):
         """
             A function which returns if the player has a quartett.
         """
@@ -111,12 +127,13 @@ class PlayerInterface:
             count = sum(isinstance(i, type(c)) for i in self.hand)
 
             while count > 3:
+                callback(self, c)
+                self.add_quartet()
                 for q in range(4):
-                    print(self.hand)
+                    # print(self.hand)
 
                     for i, o in enumerate(self.hand):
                         if isinstance(o, type(c)):
                             del self.hand[i]
-                            print("ound")
                             break
                 count = sum(isinstance(i, type(c)) for i in self.hand)
