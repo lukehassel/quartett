@@ -30,6 +30,9 @@ class UIConsoleImpl(UIInterface):
         print("Es dürfen min 3 bis max 8 spieler zusammenspielen."), time.sleep(0.5)
 
     def show_option_bot_or_user(self):
+        """
+            this function for the decision between bot and human.
+        """
         opponent = int(input("Geben Sie [1] für Bot oder [2] für Mensch: "))
         if opponent == 1:
             return ChooseBotState()
@@ -40,9 +43,17 @@ class UIConsoleImpl(UIInterface):
             self.show_option_bot_or_user()
 
     def show_unknown_input(self):
+        """
+            a function to wrong input.
+        """
         print("Eingabe unbekannt.")
 
     def show_which_player(self, players: [PlayerInterface], current_player: PlayerInterface):
+        """
+            this function for asking about a player.
+            :param players:
+            :param current_player:
+        """
         print("Welchen spieler willst du nach einer Karte Fragen?")
         showPlayer = players.copy()
         showPlayer.remove(current_player)
@@ -60,6 +71,10 @@ class UIConsoleImpl(UIInterface):
             self.show_which_player(players, current_player)
 
     def show_which_card(self):
+        """
+            this function for asking about a card.
+            :return:
+        """
         print("Nach welcher Karte willst du den Spieler Fragen?")
         possibleCards = [Club(), Diamond(), Heart(), Spade()]
         for i, card in enumerate(possibleCards):
@@ -72,19 +87,50 @@ class UIConsoleImpl(UIInterface):
             return self.show_which_card()
 
     def show_current_move(self, player: PlayerInterface):
+        """
+            this function shows that it is the next player's turn.
+            :return:
+                name of the player.
+        """
         print("Spieler " + player.get_name() + " ist dran.")
 
     def show_player_has_found_a_quartet(self, player: PlayerInterface, card: Card):
+        """
+            this function shows which player has a quartet.
+            :return:
+                name of the player
+        """
         print("Spieler "+player.get_name()+" hat ein Quartett mit der Karte " + card.card_symbol() + " gefunden.")
 
     def show_card_move(self, fromPlayer: PlayerInterface, toPlayer: PlayerInterface, card: Card):
+        """
+            this function for moving the card from a player to another player.
+            :param fromPlayer:
+            :param toPlayer:
+            :param card:
+            :return:
+                the names of the two players.
+        """
         print(
             "Spieler " + toPlayer.get_name() + " hat die Karte " + card.card_symbol() + " von " + fromPlayer.get_name() + " genommen.")
 
     def show_player_gets_card_from_stack(self, player: PlayerInterface, card: Card):
+        """
+            this function shows which player needs a card from the stack.
+            :param player:
+            :param card:
+            :return:
+                name of the player and the card symbol.
+        """
         print("Spieler " + player.get_name() + " hat die Karte " + card.card_symbol() + " vom Stapel gezogen")
 
     def show_current_hand(self, players: [PlayerInterface], cardStack: CardStack):
+        """
+
+        :param players:
+        :param cardStack:
+        :return:
+        """
         print("----------------[Aktueller Spielstand]----------------")
         for player in players:
             hand = []

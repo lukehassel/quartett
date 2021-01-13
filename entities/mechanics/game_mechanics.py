@@ -42,6 +42,9 @@ class GameMechanics:
                     break
 
     def ask_player_for_card(self, player: PlayerInterface):
+        """
+            the player asks for a card and looks whether the player is a user or a bot.
+        """
         if isinstance(player, type(User(""))):
             self.state = self.ui.show_which_player(self.players, player)
         elif isinstance(player, type(Bot(""))):
@@ -65,6 +68,9 @@ class GameMechanics:
                     self.ui.show_current_move(player)
 
     def players_have_cards(self, players: [PlayerInterface]):
+        """
+            whether player has the card.
+        """
         for player in players:
             if not player.has_cards():
                 return False

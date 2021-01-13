@@ -99,7 +99,11 @@ class MyTestCase(unittest.TestCase):
         print(u1.has_quartet())
         self.assertEqual(u1.has_quartet(), True)
 
-    def test_player_remove_quartet(self):
+    def test_player_remove_quartet(self)\
+        """
+        
+        :return: 
+        """
         u1 = User("")
 
         u1.set_hand([Club(), Diamond(), Diamond(), Diamond(), Diamond(), Diamond()])
@@ -122,6 +126,10 @@ class MyTestCase(unittest.TestCase):
         print(ui.show_which_player([u1, u2]))
 
     def test_has_no_cards(self):
+        """
+
+            :return:
+        """
         me = GameMechanics(UIConsoleImpl())
 
         u1 = User("asdf")
