@@ -1,0 +1,22 @@
+Index: main/main.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from ui.factory.ui_console_factory import UIConsoleFactory\r\n\r\nif __name__ == '__main__':\r\n    \"\"\"\r\n            This method starts the program.\r\n    \"\"\"\r\n\r\n    console_ui = UIConsoleFactory().initUI()\r\n\r\n    GameMechanics(players, console_ui)
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/main/main.py b/main/main.py
+--- a/main/main.py	(revision 97b3ee6e53948abf700eea1bd211b97cba4e0260)
++++ b/main/main.py	(date 1610386744624)
+@@ -1,10 +1,0 @@
+-from ui.factory.ui_console_factory import UIConsoleFactory
+-
+-if __name__ == '__main__':
+-    """
+-            This method starts the program.
+-    """
+-
+-    console_ui = UIConsoleFactory().initUI()
+-
+-    GameMechanics(players, console_ui)
+\ No newline at end of file
