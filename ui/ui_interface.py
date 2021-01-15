@@ -62,3 +62,11 @@ class UIInterface(ABC):
     @abstractmethod
     def show_winner(self, winners: [PlayerBase]):
         pass
+
+    @abstractmethod
+    def show_new_round(self):
+        pass
+
+    @abstractmethod
+    def set_callback_new_game(self, newGame):
+        pass

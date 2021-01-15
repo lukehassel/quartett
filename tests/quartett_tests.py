@@ -100,17 +100,13 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(u1.has_quartet(), True)
 
     def test_player_remove_quartet(self):
-            """
 
-            :return:
-            """
+        u1 = User("")
 
-    u1 = User("")
+        u1.set_hand([Club(), Diamond(), Diamond(), Diamond(), Diamond(), Diamond()])
 
-    u1.set_hand([Club(), Diamond(), Diamond(), Diamond(), Diamond(), Diamond()])
-
-    u1.remove_all_quartet()
-    self.assertEqual(len(u1.get_hand()), len([Club(), Diamond()]))
+        u1.remove_all_quartet()
+        self.assertEqual(len(u1.get_hand()), len([Club(), Diamond()]))
 
 
 def test_console_ui(self):

@@ -8,4 +8,4 @@ if __name__ == '__main__':
 
     console_ui = UIConsoleFactory().initUI()
 
-    GameUseCase(console_ui).start_game()
+    GameUseCase(console_ui)

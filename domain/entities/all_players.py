@@ -20,3 +20,7 @@ class AllPlayers:
             if lista.get_quartet_count() == winner.get_quartet_count():
                 winners.append(lista)
         return winners
+
+    def resetGame(self, players: [PlayerBase]):
+        for player in players:
+            player.reset()

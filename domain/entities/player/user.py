@@ -30,6 +30,9 @@ class User(PlayerBase):
         """
         return super().get_hand()
 
+    def reset(self):
+        super().reset()
+
     def add_card(self, card: Card):
         """
 

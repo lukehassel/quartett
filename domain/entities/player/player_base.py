@@ -6,7 +6,6 @@ from domain.entities.cards.club import Club
 from domain.entities.cards.diamond import Diamond
 from domain.entities.cards.heart import Heart
 from domain.entities.cards.spade import Spade
-import doctest
 
 
 class PlayerBase:
@@ -109,11 +108,12 @@ class PlayerBase:
                 return True
         return False
 
-    def reset_hand(self):
+    def reset(self):
         """
             A function that resets the points to 0.
         """
         self.hand = []
+        self.quartetCount = 0
 
     def has_quartet(self):
         """
@@ -124,7 +124,7 @@ class PlayerBase:
         heartCount = 0
         spadeCount = 0
 
-        #print("hand:" + str(self.get_hand()))
+        # print("hand:" + str(self.get_hand()))
 
         for c in self.get_hand():
             if isinstance(c, type(Diamond())):

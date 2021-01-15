@@ -26,6 +26,9 @@ class Bot(PlayerBase):
         """
         super().__init__(name)
 
+    def reset(self):
+        super().reset()
+
     def add_quartet(self):
         """
 
