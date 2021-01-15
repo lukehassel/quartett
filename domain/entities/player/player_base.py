@@ -115,17 +115,6 @@ class PlayerBase:
         """
         self.hand = []
 
-if __name__ == '__main__':
-    doctest.testmod()
-
-    def doctest(self):
-        """Return the factorial of n, an exact integer >= 0.
-
-            >>> doctest()
-            6
-        """
-        return 5
-
     def has_quartet(self):
         """
             A function which returns if the player has a quartet.

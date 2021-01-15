@@ -129,3 +129,16 @@ dmypy.json
 .pyre/
 *.xml
 *.iml
+venv1/pyvenv.cfg
+venv1/bin/python3.8
+venv1/bin/python3
+venv1/bin/python
+venv1/bin/pip3.8
+venv1/bin/pip3
+venv1/bin/pip
+venv1/bin/easy_install-3.8
+venv1/bin/easy_install
+venv1/bin/Activate.ps1
+venv1/bin/activate.fish
+venv1/bin/activate.csh
+venv1/bin/activate

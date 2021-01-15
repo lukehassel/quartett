@@ -17,7 +17,15 @@ class UIInterface(ABC):
         pass
 
     @abstractmethod
-    def show_option_bot_or_user(self):
+    def show_choose_players(self):
+        pass
+
+    @abstractmethod
+    def choose_name(self, player):
+        pass
+
+    @abstractmethod
+    def bot_or_player(self, name: str):
         pass
 
     @abstractmethod

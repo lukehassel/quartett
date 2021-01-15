@@ -37,20 +37,6 @@ class GameExitState(GameState):
     pass
 
 
-class ChooseUserState(GameState):
-    """
-        This class represents a state in which the game can be.
-        ...
-    """
-
-
-class ChooseBotState(GameState):
-    """
-        This class represents a state in which the game can be.
-        ...
-    """
-
-
 class AskPlayerForCardAndPlayer(GameState):
     """
         This class represents a state in which the game can be.
@@ -62,3 +48,7 @@ class AskPlayerForCardAndPlayer(GameState):
         self.card = card
 
 
+class PlayerDidCreatePlayerList(GameState):
+
+    def __init__(self, players: [PlayerBase]):
+        self.players = players

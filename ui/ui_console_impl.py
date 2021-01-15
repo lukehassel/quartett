@@ -8,9 +8,11 @@ from domain.entities.cards.club import Club
 from domain.entities.cards.diamond import Diamond
 from domain.entities.cards.heart import Heart
 from domain.entities.cards.spade import Spade
-from domain.entities.stack import CardStack
+from domain.entities.player.bot import Bot
 from domain.entities.player.player_base import PlayerBase
-from ui.states.game_states import ChooseBotState, ChooseUserState, AskPlayerForCardAndPlayer
+from domain.entities.player.user import User
+from domain.entities.stack import CardStack
+from ui.states.game_states import AskPlayerForCardAndPlayer, PlayerDidCreatePlayerList
 from ui.ui_interface import UIInterface
 
 
@@ -18,6 +20,40 @@ class UIConsoleImpl(UIInterface):
     """
         This is the UI console Implementation. All methods are overridden from UIInterface.
     """
+
+    def show_choose_players(self):
+        players = []
+        number = input("Bitte geben Sie die Anzahl der Spieler ein: ")
+        if number.isdigit():
+            if 1 < int(number) < 7:
+                for i in range(1, int(number) + 1):
+                    name = self.choose_name(i)
+                    player = self.bot_or_player(name)
+                    players.append(player)
+                return PlayerDidCreatePlayerList(players)
+            else:
+                print("Anzahl der Spieler darf nur zwischen 2-8 sein.")
+                self.show_choose_players()
+
+        else:
+            self.show_unknown_input()
+            self.show_choose_players()
+
+    def choose_name(self, player):
+        name = input("Wie soll der " + str(player) + ". Spieler heißen: ")
+        return name
+
+    def bot_or_player(self, name: str):
+        value = input("Computerspieler = 0, Mensch = 1: ")
+
+        if value.isdigit():
+            if int(value) == 0:
+                return Bot(name)
+            else:
+                return User(name)
+        else:
+            self.show_unknown_input()
+            self.bot_or_player(name)
 
     def show_start_message(self):
         """
@@ -29,25 +65,11 @@ class UIConsoleImpl(UIInterface):
 
         print("Es dürfen min 3 bis max 8 spieler zusammenspielen."), time.sleep(0.5)
 
-    def show_option_bot_or_user(self):
-        """
-            this function for the decision between bot and human.
-        """
-        opponent = int(input("Geben Sie [1] für Bot oder [2] für Mensch: "))
-        if opponent == 1:
-            return ChooseBotState()
-        if opponent == 2:
-            return ChooseUserState()
-        else:
-            self.show_unknown_input()
-            self.show_option_bot_or_user()
-
     def show_unknown_input(self):
         """
             a function to wrong input.
         """
         print("Eingabe unbekannt.")
-
 
     def show_which_player(self, players: [PlayerBase], current_player: PlayerBase):
         """
@@ -101,7 +123,7 @@ class UIConsoleImpl(UIInterface):
             :return:
                 name of the player
         """
-        print("Spieler "+player.get_name()+" hat ein Quartett mit der Karte " + card.card_symbol() + " gefunden.")
+        print("Spieler " + player.get_name() + " hat ein Quartett mit dem Symbol " + card.card_symbol() + " gefunden.")
 
     def show_card_move(self, fromPlayer: PlayerBase, toPlayer: PlayerBase, card: Card):
         """
@@ -152,4 +174,4 @@ class UIConsoleImpl(UIInterface):
     def show_winner(self, winners: [PlayerBase]):
         print("Es hat gewonnen:")
         for winner in winners:
-            print("     "+winner.get_name())
+            print("     " + winner.get_name())

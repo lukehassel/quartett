@@ -39,9 +39,10 @@ class GameUseCase:
                     self.ui.show_current_move(player)
                     self.ask_player_for_card(player)
                 else:
-                    winners = self.all_players.calculate_winner(self.players)
-                    self.ui.show_winner(winners)
                     break
+        self.ui.show_current_hand(self.players, self.stack)
+        winners = self.all_players.calculate_winner(self.players)
+        self.ui.show_winner(winners)
 
     def ask_player_for_card(self, player: PlayerBase):
         """
@@ -58,7 +59,7 @@ class GameUseCase:
                 self.ui.show_card_move(self.state.player, player, self.state.card)
                 player.remove_all_quartet(
                     callback=lambda player1, card1: self.ui.show_player_has_found_a_quartet(player1, card1))
-                self.ui.show_current_hand(self.players, self.stack)
+                #self.ui.show_current_hand(self.players, self.stack)
                 if self.all_players.players_have_cards(self.players):
                     self.ask_player_for_card(player)
             else:
@@ -67,4 +68,3 @@ class GameUseCase:
 
                     self.ui.show_player_gets_card_from_stack(player, card)
                     player.add_card(card)
-                    self.ui.show_current_move(player)

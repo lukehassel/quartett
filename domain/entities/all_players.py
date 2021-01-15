@@ -3,6 +3,9 @@ from domain.entities.player.player_base import PlayerBase
 class AllPlayers:
 
     def players_have_cards(self, players: [PlayerBase]):
+        """
+            whether player has the card.
+        """
         for player in players:
             if not player.has_cards():
                 return False
