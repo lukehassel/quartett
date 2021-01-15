@@ -34,15 +34,29 @@ class PlayerBase:
         return self.name
 
     def add_quartet(self):
+        """
+            a function to add quartet in the count of player.
+        """
         self.quartetCount = self.quartetCount + 1
 
     def get_quartet_count(self):
+        """
+            :return: the count of player.
+        """
         return self.quartetCount
 
     def reset_quartet_count(self):
+        """
+            the function to reset the count of player.
+        """
         self.quartetCount = 0
 
     def has_cards(self):
+        """
+            a function to
+            :return:
+                card of the player
+        """
         if len(self.hand) > 0:
             return True
         else:
@@ -57,6 +71,11 @@ class PlayerBase:
         return self.hand
 
     def add_card(self, card: Card):
+        """
+
+            :param card:
+            :return:
+        """
         self.hand.append(card)
 
     def set_hand(self, cards: [Card]):
@@ -68,12 +87,22 @@ class PlayerBase:
         self.hand = cards
 
     def has_card(self, card: Card):
+        """
+            a function for checking whether the player has the card or not.
+            :return:
+                the player has a card or not.
+        """
         for i in self.get_hand():
             if isinstance(i, type(card)):
                 return True
         return False
 
     def remove_card(self, card: Card):
+        """
+
+            :param card:
+            :return:
+        """
         for index, val in enumerate(self.get_hand()):
             if isinstance(val, type(card)):
                 del self.get_hand()[index]
@@ -99,7 +128,7 @@ if __name__ == '__main__':
 
     def has_quartet(self):
         """
-            A function which returns if the player has a quartett.
+            A function which returns if the player has a quartet.
         """
         diamondCount = 0
         clubCount = 0

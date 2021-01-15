@@ -4,9 +4,9 @@ from domain.entities.cards.club import Club
 from domain.entities.cards.diamond import Diamond
 from domain.entities.cards.heart import Heart
 from domain.entities.cards.spade import Spade
-from domain.usecase.game_usecase import GameUseCase
-from domain.entities.stack import CardStack
 from domain.entities.player.user import User
+from domain.entities.stack import CardStack
+from domain.usecase.game_usecase import GameUseCase
 from ui.ui_console_impl import UIConsoleImpl
 
 
@@ -100,39 +100,43 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(u1.has_quartet(), True)
 
     def test_player_remove_quartet(self):
-        u1 = User("")
+            """
 
-        u1.set_hand([Club(), Diamond(), Diamond(), Diamond(), Diamond(), Diamond()])
+            :return:
+            """
 
-        u1.remove_all_quartet()
-        self.assertEqual(len(u1.get_hand()), len([Club(), Diamond()]))
+    u1 = User("")
 
-    def test_console_ui(self):
-        ui = UIConsoleImpl()
+    u1.set_hand([Club(), Diamond(), Diamond(), Diamond(), Diamond(), Diamond()])
 
-        print("you choose")
-        print(ui.show_which_card())
-
-    def test_console_ui1(self):
-        ui = UIConsoleImpl()
-
-        u1 = User("asdf")
-        u2 = User("asdfasd")
-        print("you choose")
-        print(ui.show_which_player([u1, u2]))
-
-    def test_has_no_cards(self):
-        me = GameUseCase(UIConsoleImpl())
-
-        u1 = User("asdf")
-        u2 = User("asdfasd")
-        u1.set_hand([Club(), Diamond(), Diamond(), Diamond(), Diamond(), Diamond()])
-        u2.set_hand([Club()])
-        self.assertEqual(me.players_have_cards([u1, u2]), True)
-        u2.set_hand([])
-
-        self.assertEqual(me.players_have_cards([u1, u2]), False)
+    u1.remove_all_quartet()
+    self.assertEqual(len(u1.get_hand()), len([Club(), Diamond()]))
 
 
-if __name__ == '__main__':
-    unittest.main()
+def test_console_ui(self):
+    ui = UIConsoleImpl()
+
+    print("you choose")
+    print(ui.show_which_card())
+
+
+def test_console_ui1(self):
+    ui = UIConsoleImpl()
+
+    u1 = User("asdf")
+    u2 = User("asdfasd")
+    print("you choose")
+    print(ui.show_which_player([u1, u2]))
+
+
+def test_has_no_cards(self):
+    me = GameUseCase(UIConsoleImpl())
+
+    u1 = User("asdf")
+    u2 = User("asdfasd")
+    u1.set_hand([Club(), Diamond(), Diamond(), Diamond(), Diamond(), Diamond()])
+    u2.set_hand([Club()])
+    self.assertEqual(me.players_have_cards([u1, u2]), True)
+    u2.set_hand([])
+
+    self.assertEqual(me.players_have_cards([u1, u2]), False)

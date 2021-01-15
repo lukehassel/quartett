@@ -44,6 +44,9 @@ class GameUseCase:
                     break
 
     def ask_player_for_card(self, player: PlayerBase):
+        """
+            the player asks for a card and looks whether the player is a user or a bot.
+        """
         if isinstance(player, type(User(""))):
             self.state = self.ui.show_which_player(self.players, player)
         elif isinstance(player, type(Bot(""))):
