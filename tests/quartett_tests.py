@@ -1,12 +1,12 @@
 import unittest
 
-from entities.cards.club import Club
-from entities.cards.diamond import Diamond
-from entities.cards.heart import Heart
-from entities.cards.spade import Spade
-from entities.mechanics.game_mechanics import GameMechanics
-from entities.mechanics.stack import CardStack
-from entities.player.user import User
+from domain.entities.cards.club import Club
+from domain.entities.cards.diamond import Diamond
+from domain.entities.cards.heart import Heart
+from domain.entities.cards.spade import Spade
+from domain.usecase.game_usecase import GameUseCase
+from domain.entities.stack import CardStack
+from domain.entities.player.user import User
 from ui.ui_console_impl import UIConsoleImpl
 
 
@@ -122,7 +122,7 @@ class MyTestCase(unittest.TestCase):
         print(ui.show_which_player([u1, u2]))
 
     def test_has_no_cards(self):
-        me = GameMechanics(UIConsoleImpl())
+        me = GameUseCase(UIConsoleImpl())
 
         u1 = User("asdf")
         u2 = User("asdfasd")

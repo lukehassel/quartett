@@ -1,16 +1,17 @@
 __author__ = "6966753, Khalil, 7340644, Hassel"
 __email__ = "s7114097@stud.uni-frankfurt.de, s8911049@rz.uni-frankfurt.de"
 
-import entities.mechanics.init_players as init_players
-from entities.mechanics.stack import CardStack
-from entities.player.bot import Bot
-from entities.player.player_interface import PlayerInterface
-from entities.player.user import User
-from entities.states.game_states import AskPlayerForCardAndPlayer, GameInitialState
+import domain.entities.init_players as init_players
+from domain.entities.all_players import AllPlayers
+from domain.entities.stack import CardStack
+from domain.entities.player.bot import Bot
+from domain.entities.player.player_base import PlayerBase
+from domain.entities.player.user import User
+from ui.states.game_states import AskPlayerForCardAndPlayer, GameInitialState
 from ui.ui_interface import UIInterface
 
 
-class GameMechanics:
+class GameUseCase:
 
     def __init__(self, ui: UIInterface):
         """
@@ -20,6 +21,7 @@ class GameMechanics:
         self.players = init_players.create_players(self.ui)
         self.stack = CardStack()
         self.state = GameInitialState()
+        self.all_players = AllPlayers()
 
     def start_game(self):
         self.stack.mix(self.players)
@@ -29,19 +31,19 @@ class GameMechanics:
         for player in self.players:
             if player.has_quartet():
                 player.remove_all_quartet(
-                    callback=lambda player, card: self.ui.show_player_has_found_a_quartet(player, card))
+                    callback=lambda player1, card1: self.ui.show_player_has_found_a_quartet(player1, card1))
 
-        while self.players_have_cards(self.players):
+        while self.all_players.players_have_cards(self.players):
             for player in self.players:
-                if self.players_have_cards(self.players):
+                if self.all_players.players_have_cards(self.players):
                     self.ui.show_current_move(player)
                     self.ask_player_for_card(player)
                 else:
-                    # todo show winner
-                    # self.ui.show_current_hand(self.players, self.stack)
+                    winners = self.all_players.calculate_winner(self.players)
+                    self.ui.show_winner(winners)
                     break
 
-    def ask_player_for_card(self, player: PlayerInterface):
+    def ask_player_for_card(self, player: PlayerBase):
         if isinstance(player, type(User(""))):
             self.state = self.ui.show_which_player(self.players, player)
         elif isinstance(player, type(Bot(""))):
@@ -52,9 +54,9 @@ class GameMechanics:
                 self.state.player.remove_card(self.state.card)
                 self.ui.show_card_move(self.state.player, player, self.state.card)
                 player.remove_all_quartet(
-                    callback=lambda player, card: self.ui.show_player_has_found_a_quartet(player, card))
+                    callback=lambda player1, card1: self.ui.show_player_has_found_a_quartet(player1, card1))
                 self.ui.show_current_hand(self.players, self.stack)
-                if self.players_have_cards(self.players):
+                if self.all_players.players_have_cards(self.players):
                     self.ask_player_for_card(player)
             else:
                 if not (self.stack.is_stack_empty()):
@@ -63,9 +65,3 @@ class GameMechanics:
                     self.ui.show_player_gets_card_from_stack(player, card)
                     player.add_card(card)
                     self.ui.show_current_move(player)
-
-    def players_have_cards(self, players: [PlayerInterface]):
-        for player in players:
-            if not player.has_cards():
-                return False
-        return True

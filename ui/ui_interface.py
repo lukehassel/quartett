@@ -3,9 +3,9 @@ __email__ = "s7114097@stud.uni-frankfurt.de, s8911049@rz.uni-frankfurt.de"
 
 from abc import ABC, abstractmethod
 
-from entities.cards.card import Card
-from entities.mechanics.stack import CardStack
-from entities.player.player_interface import PlayerInterface
+from domain.entities.cards.card import Card
+from domain.entities.stack import CardStack
+from domain.entities.player.player_base import PlayerBase
 
 
 class UIInterface(ABC):
@@ -25,11 +25,11 @@ class UIInterface(ABC):
         pass
 
     @abstractmethod
-    def show_player_has_found_a_quartet(self, player: PlayerInterface, card: Card):
+    def show_player_has_found_a_quartet(self, player: PlayerBase, card: Card):
         pass
 
     @abstractmethod
-    def show_which_player(self, players: [PlayerInterface], current_player: PlayerInterface):
+    def show_which_player(self, players: [PlayerBase], current_player: PlayerBase):
         pass
 
     @abstractmethod
@@ -37,17 +37,20 @@ class UIInterface(ABC):
         pass
 
     @abstractmethod
-    def show_current_hand(self, players: [PlayerInterface], stack: CardStack):
+    def show_current_hand(self, players: [PlayerBase], stack: CardStack):
         pass
 
     @abstractmethod
-    def show_current_move(self, player: PlayerInterface):
+    def show_current_move(self, player: PlayerBase):
         pass
 
     @abstractmethod
-    def show_player_gets_card_from_stack(self, player: PlayerInterface, card: Card):
+    def show_player_gets_card_from_stack(self, player: PlayerBase, card: Card):
         pass
 
     @abstractmethod
-    def show_card_move(self, fromPlayer: PlayerInterface, toPlayer: PlayerInterface, card: Card):
+    def show_card_move(self, fromPlayer: PlayerBase, toPlayer: PlayerBase, card: Card):
+        pass
+    @abstractmethod
+    def show_winner(self, winners: [PlayerBase]):
         pass

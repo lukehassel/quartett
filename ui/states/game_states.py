@@ -1,8 +1,8 @@
 __author__ = "6966753, Khalil, 7340644, Hassel"
 __email__ = "s7114097@stud.uni-frankfurt.de, s8911049@rz.uni-frankfurt.de"
 
-from entities.cards.card import Card
-from entities.player.player_interface import PlayerInterface
+from domain.entities.cards.card import Card
+from domain.entities.player.player_base import PlayerBase
 
 
 class GameState:
@@ -57,7 +57,7 @@ class AskPlayerForCardAndPlayer(GameState):
         ...
     """
 
-    def __init__(self, player: PlayerInterface, card: Card):
+    def __init__(self, player: PlayerBase, card: Card):
         self.player = player
         self.card = card
 

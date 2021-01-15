@@ -1,4 +1,4 @@
-from entities.mechanics.game_mechanics import GameMechanics
+from domain.usecase.game_usecase import GameUseCase
 from ui.factory.ui_console_factory import UIConsoleFactory
 
 if __name__ == '__main__':
@@ -8,4 +8,4 @@ if __name__ == '__main__':
 
     console_ui = UIConsoleFactory().initUI()
 
-    GameMechanics(console_ui).start_game()
+    GameUseCase(console_ui).start_game()

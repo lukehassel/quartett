@@ -1,10 +1,10 @@
 import random
 
-from entities.cards.club import Club
-from entities.cards.diamond import Diamond
-from entities.cards.heart import Heart
-from entities.cards.spade import Spade
-from entities.player.player_interface import PlayerInterface
+from domain.entities.cards.club import Club
+from domain.entities.cards.diamond import Diamond
+from domain.entities.cards.heart import Heart
+from domain.entities.cards.spade import Spade
+from domain.entities.player.player_base import PlayerBase
 
 
 class CardStack:
@@ -18,7 +18,7 @@ class CardStack:
     def get_stack(self):
         return self.stack
 
-    def mix(self, players: [PlayerInterface]):
+    def mix(self, players: [PlayerBase]):
         cardDict = {}
         for player in players:
             cardDict[player] = []

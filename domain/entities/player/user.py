@@ -1,15 +1,15 @@
 __author__ = "6966753, Khalil, 7340644, Hassel"
 __email__ = "s7114097@stud.uni-frankfurt.de, s8911049@rz.uni-frankfurt.de"
 
-from entities.cards.card import Card
-from entities.player.player_interface import PlayerInterface
+from domain.entities.cards.card import Card
+from domain.entities.player.player_base import PlayerBase
 
 
-class User(PlayerInterface):
+class User(PlayerBase):
     """
         This class represents a real human as a player.
-        All methods are overridden from the PlayerInterface class.
-        For more information take a look at the PlayerInterface class.
+        All methods are overridden from the PlayerBase class.
+        For more information take a look at the PlayerBase class.
     """
 
     def __init__(self, name: str):

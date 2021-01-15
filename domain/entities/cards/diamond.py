@@ -1,4 +1,4 @@
-from entities.cards.card import Card
+from domain.entities.cards.card import Card
 
 
 class Diamond(Card):

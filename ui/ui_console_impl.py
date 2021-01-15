@@ -3,14 +3,14 @@ __email__ = "s7114097@stud.uni-frankfurt.de, s8911049@rz.uni-frankfurt.de"
 
 import time
 
-from entities.cards.card import Card
-from entities.cards.club import Club
-from entities.cards.diamond import Diamond
-from entities.cards.heart import Heart
-from entities.cards.spade import Spade
-from entities.mechanics.stack import CardStack
-from entities.player.player_interface import PlayerInterface
-from entities.states.game_states import ChooseBotState, ChooseUserState, AskPlayerForCardAndPlayer
+from domain.entities.cards.card import Card
+from domain.entities.cards.club import Club
+from domain.entities.cards.diamond import Diamond
+from domain.entities.cards.heart import Heart
+from domain.entities.cards.spade import Spade
+from domain.entities.stack import CardStack
+from domain.entities.player.player_base import PlayerBase
+from ui.states.game_states import ChooseBotState, ChooseUserState, AskPlayerForCardAndPlayer
 from ui.ui_interface import UIInterface
 
 
@@ -42,7 +42,7 @@ class UIConsoleImpl(UIInterface):
     def show_unknown_input(self):
         print("Eingabe unbekannt.")
 
-    def show_which_player(self, players: [PlayerInterface], current_player: PlayerInterface):
+    def show_which_player(self, players: [PlayerBase], current_player: PlayerBase):
         print("Welchen spieler willst du nach einer Karte Fragen?")
         showPlayer = players.copy()
         showPlayer.remove(current_player)
@@ -71,20 +71,20 @@ class UIConsoleImpl(UIInterface):
             self.show_unknown_input()
             return self.show_which_card()
 
-    def show_current_move(self, player: PlayerInterface):
+    def show_current_move(self, player: PlayerBase):
         print("Spieler " + player.get_name() + " ist dran.")
 
-    def show_player_has_found_a_quartet(self, player: PlayerInterface, card: Card):
+    def show_player_has_found_a_quartet(self, player: PlayerBase, card: Card):
         print("Spieler "+player.get_name()+" hat ein Quartett mit der Karte " + card.card_symbol() + " gefunden.")
 
-    def show_card_move(self, fromPlayer: PlayerInterface, toPlayer: PlayerInterface, card: Card):
+    def show_card_move(self, fromPlayer: PlayerBase, toPlayer: PlayerBase, card: Card):
         print(
             "Spieler " + toPlayer.get_name() + " hat die Karte " + card.card_symbol() + " von " + fromPlayer.get_name() + " genommen.")
 
-    def show_player_gets_card_from_stack(self, player: PlayerInterface, card: Card):
+    def show_player_gets_card_from_stack(self, player: PlayerBase, card: Card):
         print("Spieler " + player.get_name() + " hat die Karte " + card.card_symbol() + " vom Stapel gezogen")
 
-    def show_current_hand(self, players: [PlayerInterface], cardStack: CardStack):
+    def show_current_hand(self, players: [PlayerBase], cardStack: CardStack):
         print("----------------[Aktueller Spielstand]----------------")
         for player in players:
             hand = []
@@ -101,3 +101,8 @@ class UIConsoleImpl(UIInterface):
         for player in players:
             print("Spieler " + player.get_name() + " hat " + str(player.get_quartet_count()) + " Quartette gefunden.")
         print("----------------[Aktueller Spielstand]----------------")
+
+    def show_winner(self, winners: [PlayerBase]):
+        print("Es hat gewonnen:")
+        for winner in winners:
+            print("     "+winner.get_name())

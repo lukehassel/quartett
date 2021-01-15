@@ -1,14 +1,15 @@
 __author__ = "6966753, Khalil, 7340644, Hassel"
 __email__ = "s7114097@stud.uni-frankfurt.de, s8911049@rz.uni-frankfurt.de"
 
-from entities.cards.card import Card
-from entities.cards.club import Club
-from entities.cards.diamond import Diamond
-from entities.cards.heart import Heart
-from entities.cards.spade import Spade
+from domain.entities.cards.card import Card
+from domain.entities.cards.club import Club
+from domain.entities.cards.diamond import Diamond
+from domain.entities.cards.heart import Heart
+from domain.entities.cards.spade import Spade
+import doctest
 
 
-class PlayerInterface:
+class PlayerBase:
     """
         This Class represents a player in the game.
     """
@@ -84,6 +85,17 @@ class PlayerInterface:
             A function that resets the points to 0.
         """
         self.hand = []
+
+if __name__ == '__main__':
+    doctest.testmod()
+
+    def doctest(self):
+        """Return the factorial of n, an exact integer >= 0.
+
+            >>> doctest()
+            6
+        """
+        return 5
 
     def has_quartet(self):
         """
