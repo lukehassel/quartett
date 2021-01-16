@@ -48,7 +48,6 @@ class Bot(PlayerBase):
         """
         super().reset_quartet_count()
 
-
     def get_random_player(self, players: [PlayerBase], current_player: PlayerBase):
         """
 
@@ -58,7 +57,7 @@ class Bot(PlayerBase):
         """
         copy = players.copy()
         copy.remove(current_player)
-        randIndexPlayer = random.randint(0, len(copy)-1)
+        randIndexPlayer = random.randint(0, len(copy) - 1)
         return copy[randIndexPlayer]
 
     def get_random_card(self):
@@ -104,12 +103,6 @@ class Bot(PlayerBase):
             remove the card.
         """
         return super().remove_card(card)
-
-    def reset_hand(self):
-        """
-            reset the hand.
-        """
-        super().reset_hand()
 
     def has_quartet(self):
         """

@@ -136,3 +136,4 @@ def test_has_no_cards(self):
     u2.set_hand([])
 
     self.assertEqual(me.players_have_cards([u1, u2]), False)
+

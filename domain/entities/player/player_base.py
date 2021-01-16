@@ -90,6 +90,34 @@ class PlayerBase:
             a function for checking whether the player has the card or not.
             :return:
                 the player has a card or not.
+
+            >>> u1 = PlayerBase("")
+            >>> u1.set_hand([Club(), Diamond(), Heart()])
+            >>> u1.has_card(Diamond())
+            True
+
+            >>> u1.has_card(Club())
+            True
+
+            >>> u1.has_card( Heart())
+            True
+
+            >>> u1.remove_card( Heart())
+            True
+
+            >>> u1.remove_card( Diamond())
+            True
+
+            >>> u1.has_card(Heart())
+            False
+
+            >>> u1.has_card(Spade())
+            False
+
+            >>> u1.has_card(Diamond())
+            False
+
+
         """
         for i in self.get_hand():
             if isinstance(i, type(card)):
@@ -118,6 +146,31 @@ class PlayerBase:
     def has_quartet(self):
         """
             A function which returns if the player has a quartet.
+
+
+
+            >>> u1 = PlayerBase("")
+            >>> u1.set_hand([Club(), Diamond(), Heart()])
+            >>> u1.has_quartet()
+            False
+
+            >>> u1.set_hand([Club(), Diamond(), Heart(), Spade()])
+            >>> u1.has_quartet()
+            False
+
+            >>> u1.set_hand([Club(), Diamond(), Diamond(), Diamond(), Diamond(), Diamond()])
+            >>> u1.has_quartet()
+            True
+
+            >>> u1.set_hand([Club(), Spade(), Spade(), Spade(), Spade(), Diamond()])
+            >>> u1.has_quartet()
+            True
+
+            >>> u1.set_hand([Heart(), Spade(), Spade(), Heart(), Heart(), Heart()])
+            >>> u1.has_quartet()
+            True
+
+
         """
         diamondCount = 0
         clubCount = 0
@@ -167,3 +220,9 @@ class PlayerBase:
                             del self.hand[i]
                             break
                 count = sum(isinstance(i, type(c)) for i in self.hand)
+
+
+if __name__ == '__main__':
+    import doctest
+
+    doctest.testmod(extraglobs={'p': PlayerBase("")})
