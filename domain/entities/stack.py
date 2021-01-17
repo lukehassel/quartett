@@ -1,5 +1,6 @@
 import random
 
+from domain.entities.cards.card import Card
 from domain.entities.cards.club import Club
 from domain.entities.cards.diamond import Diamond
 from domain.entities.cards.heart import Heart
@@ -14,10 +15,23 @@ class CardStack:
         """
             a function to retrieve the cards in stack.
         """
-        possibleCards = [Club(), Heart(), Spade(), Diamond()]
-        self.stack = []
-        for i in range(8):
-            self.stack = self.stack + [possibleCards[x] for x in range(len(possibleCards))]
+        card = Card("")
+        self.stack = [Club(card.possible_card_types()[0]), Club(card.possible_card_types()[1]),
+                      Club(card.possible_card_types()[2]), Club(card.possible_card_types()[3]),
+                      Club(card.possible_card_types()[4]), Club(card.possible_card_types()[5]),
+                      Club(card.possible_card_types()[6]), Club(card.possible_card_types()[7]),
+                      Heart(card.possible_card_types()[0]), Heart(card.possible_card_types()[1]),
+                      Heart(card.possible_card_types()[2]), Heart(card.possible_card_types()[3]),
+                      Heart(card.possible_card_types()[4]), Heart(card.possible_card_types()[5]),
+                      Heart(card.possible_card_types()[6]), Heart(card.possible_card_types()[7]),
+                      Spade(card.possible_card_types()[0]), Spade(card.possible_card_types()[1]),
+                      Spade(card.possible_card_types()[2]), Spade(card.possible_card_types()[3]),
+                      Spade(card.possible_card_types()[4]), Spade(card.possible_card_types()[5]),
+                      Spade(card.possible_card_types()[6]), Spade(card.possible_card_types()[7]),
+                      Diamond(card.possible_card_types()[0]), Diamond(card.possible_card_types()[1]),
+                      Diamond(card.possible_card_types()[2]), Diamond(card.possible_card_types()[3]),
+                      Diamond(card.possible_card_types()[4]), Diamond(card.possible_card_types()[5]),
+                      Diamond(card.possible_card_types()[6]), Diamond(card.possible_card_types()[7]), ]
 
     def get_stack(self):
         """
@@ -86,7 +100,7 @@ class CardStack:
         if len(players) == 0:
             raise ValueError("No Player defined.")
         else:
-            if len(players)>8:
+            if len(players) > 8:
                 raise ValueError("Length can't be longer than 8.")
             else:
 

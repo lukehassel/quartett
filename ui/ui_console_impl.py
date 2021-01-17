@@ -199,7 +199,7 @@ class UIConsoleImpl(UIInterface):
         for player in players:
             hand = []
             for c in player.get_hand():
-                hand.append(c.card_symbol())
+                hand.append(c.card_symbol()+" "+c.get_card_type())
 
             print(player.get_name() + " hat die Karten: " + str(hand))
         stack = []

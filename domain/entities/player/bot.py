@@ -64,7 +64,11 @@ class Bot(PlayerBase):
         """
             returns the random card.
         """
-        possibleCards = [Club(), Heart(), Spade(), Diamond()]
+        randomType = random.randint(0, Card().possible_card_types().__len__() - 1)
+        possibleCards = [Club(Card().possible_card_types()[randomType]),
+                         Heart(Card().possible_card_types()[randomType]),
+                         Spade(Card().possible_card_types()[randomType]),
+                         Diamond(Card().possible_card_types()[randomType])]
         randIndex = random.randint(0, 3)
         return possibleCards[randIndex]
 

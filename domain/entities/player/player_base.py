@@ -120,7 +120,7 @@ class PlayerBase:
 
         """
         for i in self.get_hand():
-            if isinstance(i, type(card)):
+            if isinstance(i, type(card)) and i.get_card_type() == card.get_card_type():
                 return True
         return False
 
@@ -172,54 +172,46 @@ class PlayerBase:
 
 
         """
-        diamondCount = 0
-        clubCount = 0
-        heartCount = 0
-        spadeCount = 0
-
-        # print("hand:" + str(self.get_hand()))
 
         for c in self.get_hand():
-            if isinstance(c, type(Diamond())):
-                diamondCount = diamondCount + 1
-            elif isinstance(c, type(Spade())):
-                spadeCount = spadeCount + 1
-            elif isinstance(c, type(Heart())):
-                heartCount = heartCount + 1
-            elif isinstance(c, type(Club())):
-                clubCount = clubCount + 1
-        if diamondCount > 3:
-            return True
-        elif clubCount > 3:
-            return True
-        elif spadeCount > 3:
-            return True
-        elif heartCount > 3:
-            return True
-        else:
-            return False
+            card_type = c.get_card_type()
+
+            if any(x.get_card_type() == c.get_card_type() and isinstance(x, type(Diamond())) for x in
+                   self.get_hand()) and any(
+                x.get_card_type() == c.get_card_type() and isinstance(x, type(Spade())) for x in
+                self.get_hand()) and any(
+                x.get_card_type() == c.get_card_type() and isinstance(x, type(Heart())) for x in
+                self.get_hand()) and any(
+                x.get_card_type() == c.get_card_type() and isinstance(x, type(Club())) for x in self.get_hand()):
+                return True
+
+        return False
 
     def remove_all_quartet(self, callback):
         """
             A function which returns if the player has a quartett.
         """
-        possibleCards = [Club(), Diamond(), Heart(), Spade()]
+        for ia, c in enumerate(self.get_hand()):
+            card_type = c.get_card_type()
 
-        for c in possibleCards:
+            for i, x in enumerate(self.get_hand()):
+                if x.get_card_type() == c.get_card_type() and isinstance(x, type(Diamond())):
+                    for i1, x1 in enumerate(self.get_hand()):
+                        if x1.get_card_type() == c.get_card_type() and isinstance(x1, type(Spade())):
+                            for i2, x2 in enumerate(self.get_hand()):
+                                if x2.get_card_type() == c.get_card_type() and isinstance(x2, type(Heart())):
+                                    for i3, x3 in enumerate(self.get_hand()):
+                                        if x3.get_card_type() == c.get_card_type() and isinstance(x3, type(Club())):
 
-            count = sum(isinstance(i, type(c)) for i in self.hand)
-
-            while count > 3:
-                callback(self, c)
-                self.add_quartet()
-                for q in range(4):
-                    # print(self.hand)
-
-                    for i, o in enumerate(self.hand):
-                        if isinstance(o, type(c)):
-                            del self.hand[i]
-                            break
-                count = sum(isinstance(i, type(c)) for i in self.hand)
+                                            try:
+                                                del self.hand[self.get_hand().index(x)]
+                                                del self.hand[self.get_hand().index(x1)]
+                                                del self.hand[self.get_hand().index(x2)]
+                                                del self.hand[self.get_hand().index(x3)]
+                                                callback(self, c)
+                                                self.add_quartet()
+                                            except:
+                                                print("")
 
 
 if __name__ == '__main__':
