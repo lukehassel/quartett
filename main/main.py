@@ -1,3 +1,6 @@
+__author__ = "6966753, Khalil, 7340644, Hassel"
+__email__ = "s7114097@stud.uni-frankfurt.de, s8911049@rz.uni-frankfurt.de"
+
 from domain.usecase.game_usecase import GameUseCase
 from ui.factory.ui_console_factory import UIConsoleFactory
 

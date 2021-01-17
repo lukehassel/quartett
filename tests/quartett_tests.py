@@ -1,3 +1,6 @@
+__author__ = "6966753, Khalil, 7340644, Hassel"
+__email__ = "s7114097@stud.uni-frankfurt.de, s8911049@rz.uni-frankfurt.de"
+
 import unittest
 
 from domain.entities.cards.club import Club
@@ -13,12 +16,18 @@ from ui.ui_console_impl import UIConsoleImpl
 class MyTestCase(unittest.TestCase):
 
     def test_stack_generation(self):
+        """
+        Test the generation of the stack.
+        """
         test = CardStack()
         # print(test.get_stack())
 
         self.assertEqual(len(test.get_stack()), 32)
 
     def test_stack_mixing_with_two_players(self):
+        """
+                Mixing with two players
+        """
         test = CardStack()
         u1 = User("asdf")
         u2 = User("asdf")
@@ -29,6 +38,9 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(len(u2.get_hand()), 10)
 
     def test_stack_mixing_with_three_players(self):
+        """
+                Mixing with three players
+        """
         test = CardStack()
         u1 = User("asdf")
         u2 = User("asdf")
@@ -37,6 +49,9 @@ class MyTestCase(unittest.TestCase):
         print("stackLength: " + test.get_stack().__len__().__str__())
 
     def test_stack_mixing_with_eight_players(self):
+        """
+                Mixing with eight players
+        """
         test = CardStack()
         u1 = User("asdf")
         u2 = User("asdf")
@@ -59,13 +74,17 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(len(u8.get_hand()), 4)
 
     def test_stack_random_card(self):
+        """
+                Selection of random card.
+        """
         test = CardStack()
         print(test.get_random_card())
         print(test.get_stack().__len__())
 
-        self.assertEqual(len(test.get_stack()), 31)
-
     def test_player_has_card(self):
+        """
+                Test has_card function of player with a hand.
+        """
         u1 = User("")
         u1.set_hand([Club(), Diamond()])
 
@@ -89,6 +108,9 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(u1.has_card(Spade()), False)
 
     def test_player_has_quartet(self):
+        """
+                Test if the player has a quartet.
+        """
         u1 = User("")
         u1.set_hand([Club(), Diamond()])
 
@@ -100,6 +122,9 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(u1.has_quartet(), True)
 
     def test_player_remove_quartet(self):
+        """
+                Test the removing of a quartet
+        """
 
         u1 = User("")
 
@@ -109,31 +134,12 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(len(u1.get_hand()), len([Club(), Diamond()]))
 
 
-def test_console_ui(self):
-    ui = UIConsoleImpl()
+    def test_console_ui(self):
+        """
+                Test ui.
+        """
+        ui = UIConsoleImpl()
 
-    print("you choose")
-    print(ui.show_which_card())
-
-
-def test_console_ui1(self):
-    ui = UIConsoleImpl()
-
-    u1 = User("asdf")
-    u2 = User("asdfasd")
-    print("you choose")
-    print(ui.show_which_player([u1, u2]))
-
-
-def test_has_no_cards(self):
-    me = GameUseCase(UIConsoleImpl())
-
-    u1 = User("asdf")
-    u2 = User("asdfasd")
-    u1.set_hand([Club(), Diamond(), Diamond(), Diamond(), Diamond(), Diamond()])
-    u2.set_hand([Club()])
-    self.assertEqual(me.players_have_cards([u1, u2]), True)
-    u2.set_hand([])
-
-    self.assertEqual(me.players_have_cards([u1, u2]), False)
+        print("you choose")
+        print(ui.show_which_card())
 
