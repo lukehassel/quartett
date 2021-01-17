@@ -26,6 +26,9 @@ class UIConsoleImpl(UIInterface):
         self.startNewGame = None
 
     def show_choose_players(self):
+        """
+            For more information about on what this method is implementing take a look at the UIInterface.
+        """
         players = []
         number = input("Bitte geben Sie die Anzahl der Spieler ein: ")
         if number == "exit":
@@ -53,6 +56,9 @@ class UIConsoleImpl(UIInterface):
             return self.show_choose_players()
 
     def choose_name(self, player):
+        """
+            For more information about on what this method is implementing take a look at the UIInterface.
+        """
         name = input("Wie soll der " + str(player) + ". Spieler heißen: ")
         if name == "exit":
             sys.exit("Spiel wurde beendet.")
@@ -62,6 +68,9 @@ class UIConsoleImpl(UIInterface):
         return name
 
     def bot_or_player(self, name: str):
+        """
+            For more information about on what this method is implementing take a look at the UIInterface.
+        """
         value = input("Computerspieler = 0, Mensch = 1: ")
 
         if value == "exit":
@@ -93,15 +102,15 @@ class UIConsoleImpl(UIInterface):
 
     def show_unknown_input(self):
         """
-            a function to wrong input.
+            For more information about on what this method is implementing take a look at the UIInterface.
         """
         print("Eingabe unbekannt.")
 
     def show_which_player(self, players: [PlayerBase], current_player: PlayerBase):
         """
-            this function for asking about a player.
-            :param players:
-            :param current_player:
+            Asks over the ui which player and which card the user wants to choose.
+            :param players: All possible players.
+            :param current_player: The player which is the user himself.
         """
         print("Welchen spieler willst du nach einer Karte Fragen?")
         showPlayer = players.copy()
@@ -128,12 +137,14 @@ class UIConsoleImpl(UIInterface):
             self.show_which_player(players, current_player)
 
     def show_new_round(self):
+        """
+            For more information about on what this method is implementing take a look at the UIInterface.
+        """
         print("Neue Runde wird gestartet.")
 
     def show_which_card(self):
         """
-            this function for asking about a card.
-            :return:
+            For more information about on what this method is implementing take a look at the UIInterface.
         """
         print("Nach welcher Karte willst du den Spieler Fragen?")
         possibleCards = [Club(), Diamond(), Heart(), Spade()]
@@ -152,48 +163,32 @@ class UIConsoleImpl(UIInterface):
 
     def show_current_move(self, player: PlayerBase):
         """
-            this function shows that it is the next player's turn.
-            :return:
-                name of the player.
+            For more information about on what this method is implementing take a look at the UIInterface.
         """
         print("Spieler " + player.get_name() + " ist dran.")
 
     def show_player_has_found_a_quartet(self, player: PlayerBase, card: Card):
         """
-            this function shows which player has a quartet.
-            :return:
-                name of the player
+            For more information about on what this method is implementing take a look at the UIInterface.
         """
         print("Spieler " + player.get_name() + " hat ein Quartett mit dem Symbol " + card.card_symbol() + " gefunden.")
 
     def show_card_move(self, fromPlayer: PlayerBase, toPlayer: PlayerBase, card: Card):
         """
-            this function for moving the card from a player to another player.
-            :param fromPlayer:
-            :param toPlayer:
-            :param card:
-            :return:
-                the names of the two players.
+            For more information about on what this method is implementing take a look at the UIInterface.
         """
         print(
             "Spieler " + toPlayer.get_name() + " hat die Karte " + card.card_symbol() + " von " + fromPlayer.get_name() + " genommen.")
 
     def show_player_gets_card_from_stack(self, player: PlayerBase, card: Card):
         """
-            this function shows which player needs a card from the stack.
-            :param player:
-            :param card:
-            :return:
-                name of the player and the card symbol.
+            For more information about on what this method is implementing take a look at the UIInterface.
         """
         print("Spieler " + player.get_name() + " hat die Karte " + card.card_symbol() + " vom Stapel gezogen")
 
     def show_current_hand(self, players: [PlayerBase], cardStack: CardStack):
         """
-
-            :param players:
-            :param cardStack:
-            :return:
+            For more information about on what this method is implementing take a look at the UIInterface.
         """
         print("----------------[Aktueller Spielstand]----------------")
         for player in players:
@@ -213,9 +208,15 @@ class UIConsoleImpl(UIInterface):
         print("----------------[Aktueller Spielstand]----------------")
 
     def show_winner(self, winners: [PlayerBase]):
+        """
+            For more information about on what this method is implementing take a look at the UIInterface.
+        """
         print("Es hat gewonnen:")
         for winner in winners:
             print("     " + winner.get_name())
 
     def set_callback_new_game(self, newGame):
+        """
+            For more information about on what this method is implementing take a look at the UIInterface.
+        """
         self.startNewGame = newGame

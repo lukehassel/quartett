@@ -12,7 +12,7 @@ class CardStack:
 
     def __init__(self):
         """
-            a function to retrieve the cards in stack.
+            This constructor generates the card Stack.
         """
         possibleCards = [Club(), Heart(), Spade(), Diamond()]
         self.stack = []
@@ -21,12 +21,16 @@ class CardStack:
 
     def get_stack(self):
         """
-            a function to retrieve the stack.
+            A function to retrieve the stack.
+            :returns The stack.
         """
         return self.stack
 
     def mix(self, players: [PlayerBase]):
         """
+            This function is assigning random cards to the hands of the players.
+            :param players: A list of all the players.
+
             Test Correct mixing with three players.
             >>> u1 = User("asdf")
             >>> u2 = User("asdf")
@@ -114,7 +118,8 @@ class CardStack:
 
     def is_stack_empty(self):
         """
-            a function to check if the stack empty.
+            A function to check if the stack empty.
+            :returns True if the stack is empty. Else False.
         """
         if self.stack.__len__() == 0:
             return True
@@ -123,7 +128,7 @@ class CardStack:
 
     def get_random_card(self):
         """
-            a function to give random card.
+            :returns A random card from the stack.
         """
         randIndex = random.randint(0, (self.stack.__len__() - 1))
         # print(str(randIndex) + "  " + str(self.stack.__len__()))

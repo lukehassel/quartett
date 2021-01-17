@@ -3,6 +3,9 @@ from ui.factory.ui_console_factory import UIConsoleFactory
 
 
 def startProgram(debug=False):
+    """
+        This methods configures the ui and starts the game with the GameUseCase.
+    """
     console_ui = UIConsoleFactory().initUI(debug)
 
     GameUseCase(console_ui)
@@ -10,6 +13,6 @@ def startProgram(debug=False):
 
 if __name__ == '__main__':
     """
-            This method starts the program.
+            The main method.
     """
     startProgram()

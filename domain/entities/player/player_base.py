@@ -34,27 +34,28 @@ class PlayerBase:
 
     def add_quartet(self):
         """
-            a function to add quartet in the count of player.
+            a function to add a quartet quartet count of the player.
         """
         self.quartetCount = self.quartetCount + 1
 
     def get_quartet_count(self):
         """
-            :return: the count of player.
+            A function to retrieve the quartet count.
+            :return: the quartet count.
         """
         return self.quartetCount
 
     def reset_quartet_count(self):
         """
-            the function to reset the count of player.
+            This function to resets the quartet count of the player.
         """
         self.quartetCount = 0
 
     def has_cards(self):
         """
-            a function to
+            This function checks whether a player has a card on his hand.
             :return:
-                card of the player
+                True if the player has cards on this hand. False if not.
         """
         if len(self.hand) > 0:
             return True
@@ -63,31 +64,30 @@ class PlayerBase:
 
     def get_hand(self):
         """
-            A function to retrieve the points.
             :returns
-                Points of the Player.
+                The current Hand of the player as a list.
         """
         return self.hand
 
     def add_card(self, card: Card):
         """
-
-            :param card:
-            :return:
+            Adds a card to the hand of the player.
+            :param
+                card: The card that should be added.
         """
         self.hand.append(card)
 
     def set_hand(self, cards: [Card]):
         """
-            A function that adds a specific amount of points to the player.
-            Args:
-                 :param cards:
+            A function that sets the hand of the player.
+            :param
+                cards: Containing the cards that are going to be set to the players hand.
         """
         self.hand = cards
 
     def has_card(self, card: Card):
         """
-            a function for checking whether the player has the card or not.
+            A function for checking whether the player has the card or not.
             :return:
                 the player has a card or not.
 
@@ -126,9 +126,10 @@ class PlayerBase:
 
     def remove_card(self, card: Card):
         """
-
-            :param card:
-            :return:
+            Removes a card from the players hand.
+            :param
+                card: The card that should be removed.
+            :return: True if the removing was successful and False if not.
         """
         for index, val in enumerate(self.get_hand()):
             if isinstance(val, type(card)):
@@ -138,7 +139,7 @@ class PlayerBase:
 
     def reset(self):
         """
-            A function that resets the points to 0.
+            A function that resets the quartet count to 0 and the hand to an empty list.
         """
         self.hand = []
         self.quartetCount = 0
@@ -201,7 +202,9 @@ class PlayerBase:
 
     def remove_all_quartet(self, callback):
         """
-            A function which returns if the player has a quartett.
+            Removes all quartet in a players hand.
+            :param
+                callback: Is called when a quartet is found.
         """
         possibleCards = [Club(), Diamond(), Heart(), Spade()]
 

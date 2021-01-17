@@ -33,6 +33,9 @@ class GameUseCase:
             self.start_game()
 
     def restart(self):
+        """
+            Is called when the game restarts. Resets all the players to start a new game.
+        """
         self.restarted = True
         self.players = init_players.create_players(self.ui)
 
@@ -46,6 +49,12 @@ class GameUseCase:
             self.start_game()
 
     def start_game(self):
+        """
+            Is called when a new game starts.
+            The stack is assigned equally to all players.
+            Then the game removes all the quartets from all players.
+            Until one player has no cards the game will continue.
+        """
         self.state = GameInitialState()
         self.stack.mix(self.players)
 
@@ -76,7 +85,7 @@ class GameUseCase:
 
     def ask_player_for_card(self, player: PlayerBase):
         """
-            the player asks for a card and looks whether the player is a user or a bot.
+            The player asks for a card and looks whether the player is a user or a bot.
         """
         if isinstance(player, type(User(""))):
             self.state = self.ui.show_which_player(self.players, player)
